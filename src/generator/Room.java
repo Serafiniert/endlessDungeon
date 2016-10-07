@@ -1,4 +1,4 @@
 package generator;
 
-public class Room {
+public class Room implements iRoom {
 }

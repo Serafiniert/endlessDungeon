@@ -1,8 +1,9 @@
 package generator;
 
-public class Dungeon {
+public class Dungeon implements iDungeon {
 
     public Dungeon() {
 
     }
+
 }
