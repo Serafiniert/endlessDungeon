@@ -1,9 +1,13 @@
 package game;
 
 import generator.Dungeon;
+import generator.Level;
+import generator.Room;
+import generator.Tile;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Game extends JPanel {
 
@@ -11,6 +15,7 @@ public class Game extends JPanel {
     public static final int UPDATE_INTERVAL = 10;
 
     public Dungeon dungeon;
+    public Level level;
 
     public Game() {
         this.initializeGame(new Dungeon());
@@ -22,6 +27,7 @@ public class Game extends JPanel {
 
     public void initializeGame(final Dungeon dungeon) {
         this.dungeon = dungeon;
+        this.level = this.dungeon.getCurrentLevel();
         this.startPainting();
     }
 
@@ -37,12 +43,29 @@ public class Game extends JPanel {
     public void paint(final Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         this.setRenderingMethod(g2d);
-        this.drawCurrentLevel(g);
+        this.drawCurrentLevel(g2d);
     }
 
-    private void drawCurrentLevel(final Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        this.setRenderingMethod(g2d);
+    private void drawCurrentLevel(final Graphics2D g2d) {
+        if (this.level != null) {
+            this.drawRooms(g2d, this.level.getAllRooms());
+        }
+    }
+
+    private void drawRooms(final Graphics2D g2d, final ArrayList<Room> rooms) {
+        for (final Room room : rooms) {
+            this.drawTiles(g2d, room.getAllTiles());
+        }
+    }
+
+    private void drawTiles(final Graphics2D g2d, final ArrayList<Tile> tiles) {
+        for (final Tile tile : tiles) {
+            this.drawTile(g2d, tile);
+        }
+    }
+
+    private void drawTile(final Graphics2D g2d, final Tile tile) {
+        g2d.draw(tile);
     }
 
     private void setRenderingMethod(final Graphics2D g2d) {
