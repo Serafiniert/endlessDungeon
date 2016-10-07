@@ -1,4 +1,4 @@
 package generator;
 
-public class Floor {
+public class Floor extends Tile {
 }

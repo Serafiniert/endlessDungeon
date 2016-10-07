@@ -1,5 +1,5 @@
 package generator;
 
-public class Wall {
+public class Wall extends Tile {
 
 }
