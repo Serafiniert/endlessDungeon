@@ -6,4 +6,7 @@ public class Dungeon implements iDungeon {
 
     }
 
+    public Level getCurrentLevel() {
+        return null;
+    }
 }
