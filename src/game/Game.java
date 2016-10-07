@@ -1,26 +1,33 @@
 package game;
 
+import generator.Dungeon;
+
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Game extends JPanel {
 
-    ArrayList gameBoard;
+    public static final Color TRANSPARENT = new Color(255, 255, 255, 0);
+    public static final int UPDATE_INTERVAL = 10;
+
+    public Dungeon dungeon;
 
     public Game() {
-        this.gameBoard = new ArrayList();
-        this.startPainting();
+        this.initializeGame(new Dungeon());
     }
 
-    public Game(final ArrayList gameboard) {
-        this.gameBoard = gameboard;
+    public Game(final Dungeon dungeon) {
+        this.initializeGame(dungeon);
+    }
+
+    public void initializeGame(final Dungeon dungeon) {
+        this.dungeon = dungeon;
         this.startPainting();
     }
 
     public void startPainting() {
-        this.setBackground(new Color(255, 255, 255, 0));
-        Timer timer = new Timer(10, (arg0) -> {
+        this.setBackground(Game.TRANSPARENT);
+        Timer timer = new Timer(Game.UPDATE_INTERVAL, (arg0) -> {
             Game.this.repaint();
         });
         timer.start();
@@ -30,13 +37,12 @@ public class Game extends JPanel {
     public void paint(final Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         this.setRenderingMethod(g2d);
-        this.drawGameBoard(g);
+        this.drawCurrentLevel(g);
     }
 
-    private void drawGameBoard(final Graphics g) {
+    private void drawCurrentLevel(final Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         this.setRenderingMethod(g2d);
-
     }
 
     private void setRenderingMethod(final Graphics2D g2d) {
