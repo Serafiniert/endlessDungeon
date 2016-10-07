@@ -7,7 +7,8 @@ public class GameWindow {
     public static final String WINDOW_TITLE = "World";
     public static final int WINDOW_WIDTH = 1024;
     public static final int WINDOW_HEIGHT = 768;
-    private JFrame window;
+
+    public JFrame window;
 
     public GameWindow() {
         this.createGameWindow(GameWindow.WINDOW_TITLE, GameWindow.WINDOW_WIDTH, GameWindow.WINDOW_HEIGHT);
