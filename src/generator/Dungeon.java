@@ -2,7 +2,7 @@ package generator;
 
 import java.util.ArrayList;
 
-public class Dungeon implements iDungeon {
+public class Dungeon {
 
     ArrayList<Level> levelList;
     int currentLevel;

@@ -3,7 +3,7 @@ package generator;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Room implements iRoom {
+public class Room {
 
     public static final Dimension SIZE_MIN = new Dimension(4, 4);
     public static final Dimension SIZE_MAX = new Dimension(7, 7);

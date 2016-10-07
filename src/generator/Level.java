@@ -2,7 +2,7 @@ package generator;
 
 import java.util.ArrayList;
 
-public class Level implements iLevel {
+public class Level {
 
     ArrayList<Room> roomList;
 
