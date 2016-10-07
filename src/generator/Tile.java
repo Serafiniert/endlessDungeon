@@ -5,7 +5,7 @@ import java.awt.*;
 public class Tile extends Rectangle {
 
     public static final Point COORDINATES = new Point(0, 0);
-    public static final Dimension SIZE = new Dimension(5, 5);
+    public static final Dimension SIZE = new Dimension(1, 1);
     public static final Color FILL_COLOR = Color.orange;
 
     public Color fillColor;
