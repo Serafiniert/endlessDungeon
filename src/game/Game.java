@@ -69,6 +69,9 @@ public class Game extends JPanel {
         g2d.scale(SCALE, SCALE);
         g2d.setPaint(tile.fillColor);
         g2d.fill(tile);
+        g2d.setStroke(new BasicStroke(1));
+        g2d.setPaint(Color.RED);
+        g2d.drawRect(tile.x, tile.y, tile.width, tile.height);
     }
 
     private void setRenderingMethod(final Graphics2D g2d) {

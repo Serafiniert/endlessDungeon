@@ -37,7 +37,7 @@ public class Room {
     public void fillRoom() {
         for (int x = 0; x < size.width; x++) {
             for (int y = 0; y < size.height; y++) {
-                Point position = new Point(x, y);
+                Point position = new Point(x * Tile.SIZE.width, y * Tile.SIZE.height);
                 Tile tile = new Tile(position, Tile.SIZE);
                 this.tileList.add(tile);
             }
