@@ -1,4 +1,4 @@
 package generator;
 
-public class Level {
+public class Level implements iLevel {
 }
