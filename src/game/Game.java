@@ -13,6 +13,7 @@ public class Game extends JPanel {
 
     public static final Color TRANSPARENT = new Color(255, 255, 255, 0);
     public static final int UPDATE_INTERVAL = 10;
+    public static final double SCALE = 1.0;
 
     public Dungeon dungeon;
     public Level level;
@@ -65,7 +66,9 @@ public class Game extends JPanel {
     }
 
     private void drawTile(final Graphics2D g2d, final Tile tile) {
-        g2d.draw(tile);
+        g2d.scale(SCALE, SCALE);
+        g2d.setPaint(tile.fillColor);
+        g2d.fill(tile);
     }
 
     private void setRenderingMethod(final Graphics2D g2d) {
