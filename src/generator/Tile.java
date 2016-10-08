@@ -11,18 +11,18 @@ public class Tile extends Rectangle {
     public Color fillColor;
 
     public Tile() {
-        this.createTile(Tile.COORDINATES, Tile.SIZE);
+        this.initializeTile(Tile.COORDINATES, Tile.SIZE);
     }
 
     public Tile(final Dimension size) {
-        this.createTile(Tile.COORDINATES, size);
+        this.initializeTile(Tile.COORDINATES, size);
     }
 
     public Tile(final Point coordinates, final Dimension size) {
-        this.createTile(coordinates, size);
+        this.initializeTile(coordinates, size);
     }
 
-    public void createTile(final Point coordinates, final Dimension size) {
+    public void initializeTile(final Point coordinates, final Dimension size) {
         this.setBounds(coordinates.x, coordinates.y, size.width, size.height);
         this.setColor(Tile.FILL_COLOR);
     }

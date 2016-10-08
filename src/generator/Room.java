@@ -12,18 +12,18 @@ public class Room {
     private ArrayList<Tile> tileList;
 
     public Room() {
-        this.createRoom(Room.SIZE_MIN, Room.SIZE_MAX);
+        this.initializeRoom(Room.SIZE_MIN, Room.SIZE_MAX);
     }
 
     public Room(final Dimension min, final Dimension max) {
-        this.createRoom(min, max);
+        this.initializeRoom(min, max);
     }
 
     public ArrayList<Tile> getAllTiles() {
         return this.tileList;
     }
 
-    private void createRoom(final Dimension min, final Dimension max) {
+    private void initializeRoom(final Dimension min, final Dimension max) {
         this.tileList = new ArrayList<>();
         this.size = new RandomDimension(min, max).getSize();
         this.fillRoom();
