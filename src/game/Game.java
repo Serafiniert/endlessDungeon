@@ -44,18 +44,23 @@ public class Game extends JPanel {
     public void paint(final Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         this.setRenderingMethod(g2d);
+        g2d.scale(SCALE, SCALE);
         this.drawCurrentLevel(g2d);
     }
 
     private void drawCurrentLevel(final Graphics2D g2d) {
         if (this.level != null) {
             this.drawRooms(g2d, this.level.getAllRooms());
+            g2d.setStroke(new BasicStroke(1));
+            g2d.setPaint(Color.WHITE);
+            g2d.drawRect(0, 0, this.level.getSize().width * Tile.SIZE.width, this.level.getSize().height * Tile.SIZE.height);
         }
     }
 
     private void drawRooms(final Graphics2D g2d, final ArrayList<Room> rooms) {
         for (final Room room : rooms) {
             this.drawTiles(g2d, room.getAllTiles());
+            //g2d.drawString("" + room.getId(), room.getPosition().x * Tile.SIZE.width, room.getPosition().y * Tile.SIZE.height);
         }
     }
 
@@ -66,12 +71,12 @@ public class Game extends JPanel {
     }
 
     private void drawTile(final Graphics2D g2d, final Tile tile) {
-        g2d.scale(SCALE, SCALE);
         g2d.setPaint(tile.fillColor);
         g2d.fill(tile);
         g2d.setStroke(new BasicStroke(1));
-        g2d.setPaint(Color.RED);
+        g2d.setPaint(Color.GRAY);
         g2d.drawRect(tile.x, tile.y, tile.width, tile.height);
+
     }
 
     private void setRenderingMethod(final Graphics2D g2d) {

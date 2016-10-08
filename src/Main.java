@@ -6,7 +6,7 @@ import java.awt.*;
 public class Main {
 
     private static final String NAME = "endlessDungeon";
-    private static final Dimension WINDOW_SIZE = new Dimension(600, 600);
+    private static final Dimension WINDOW_SIZE = new Dimension(960, 960);
     private static final Color BACKGROUND_COLOR = Color.RED;
 
     public static void main(final String[] args) {
