@@ -39,7 +39,9 @@ public class Level {
     }
 
     public Room generateRoom() {
-        return new Room();
+        Room room = new Room();
+        System.out.println(room.getSize());
+        return room;
     }
 
     public void addRoom() {
