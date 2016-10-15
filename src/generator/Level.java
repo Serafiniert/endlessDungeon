@@ -11,6 +11,7 @@ public class Level {
     private ArrayList<Room> roomList;
     private Dimension size;
     private final int maxTries = 200;
+    private final int margin = 3;
 
     public Level() {
         this.initializeRooms(Level.SIZE_MIN, Level.SIZE_MAX);
@@ -34,6 +35,7 @@ public class Level {
 
     private boolean positionAvailable(final Room room) {
         Rectangle roomRectangle = new Rectangle(room.getPosition(), room.getSize());
+        roomRectangle = this.scaleRectangle(roomRectangle);
         for (final Room currentRoom : this.roomList) {
             Rectangle currentRoomRectangle = new Rectangle(currentRoom.getPosition(), currentRoom.getSize());
             if (roomRectangle.intersects(currentRoomRectangle)) {
@@ -41,6 +43,10 @@ public class Level {
             }
         }
         return true;
+    }
+
+    private Rectangle scaleRectangle(final Rectangle r) {
+        return new Rectangle(r.x - this.margin, r.y - this.margin, r.width + (this.margin * 2), r.height + (this.margin * 2));
     }
 
     private void fillLevelWithRooms() {
