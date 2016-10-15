@@ -10,6 +10,7 @@ public class Level {
 
     private ArrayList<Room> roomList;
     private Dimension size;
+    private final int maxTries = 200;
 
     public Level() {
         this.initializeRooms(Level.SIZE_MIN, Level.SIZE_MAX);
@@ -31,16 +32,34 @@ public class Level {
         return new Point(x, y);
     }
 
+    private boolean positionAvailable(final Room room) {
+        Rectangle roomRectangle = new Rectangle(room.getPosition(), room.getSize());
+        for (final Room currentRoom : this.roomList) {
+            Rectangle currentRoomRectangle = new Rectangle(currentRoom.getPosition(), currentRoom.getSize());
+            if (roomRectangle.intersects(currentRoomRectangle)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void fillLevelWithRooms() {
         int capacity = this.size.width * this.size.height;
-        while (capacity > (Room.SIZE_MAX.width * Room.SIZE_MAX.height)) {
+        int currentTry = 0;
+        while (capacity > (Room.SIZE_MAX.width * Room.SIZE_MAX.height) && currentTry <= maxTries) {
             Room room = this.generateRoom();
             Point position = findRandomPosition(room.getSize());
             room.setPosition(position);
-            room.fillRoom();
-            System.out.println(room);
-            this.roomList.add(room);
-            capacity -= (room.getSize().width * room.getSize().height);
+            boolean roomPositionAvailable = positionAvailable(room);
+            if (roomPositionAvailable) {
+                room.fillRoom();
+                System.out.println(room);
+                this.roomList.add(room);
+                capacity -= (room.getSize().width * room.getSize().height);
+            } else {
+                currentTry++;
+                Room.uniqueID--;
+            }
         }
     }
 
