@@ -18,6 +18,8 @@ public class Game extends JPanel {
     public Dungeon dungeon;
     public Level level;
 
+    private boolean redrawIsNeeded = true;
+
     public Game() {
         this.initializeGame(new Dungeon());
     }
@@ -41,11 +43,21 @@ public class Game extends JPanel {
     }
 
     @Override
-    public void paint(final Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        this.setRenderingMethod(g2d);
-        g2d.scale(SCALE, SCALE);
-        this.drawCurrentLevel(g2d);
+    protected void paintComponent(final Graphics g) {
+        super.paintComponent(g);
+        if (this.redrawIsNeeded) {
+            Graphics2D g2d = (Graphics2D) g;
+            this.setRenderingMethod(g2d);
+            g2d.scale(SCALE, SCALE);
+            this.drawCurrentLevel(g2d);
+            this.redrawIsNeeded = false;
+        }
+    }
+
+    // TODO: Implement correctly
+    @Override
+    public void repaint() {
+        //super.repaint();
     }
 
     private void drawCurrentLevel(final Graphics2D g2d) {
